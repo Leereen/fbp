@@ -2,45 +2,38 @@
 
 #[macro_use]
 extern crate rocket;
-
+use rocket::State;
 use rocket::response::content::Json;
 
 mod prime;
-
-fn to_json(prime: prime::Prime) -> Json<String> {
-    Json(format!(
-        "{{ 'prime': {}, 'duration': {}, 'new': {} }}",
-        prime.value.to_string(),
-        prime.duration.to_string(),
-        prime.new.to_string()
-    ))
-}
+use prime::PrimeInterface;
 
 #[get("/")]
-fn root() -> Json<String> {
-    to_json(prime::random())
+fn root(prime_i: State<PrimeInterface>) -> Json<String> {
+    prime_i.random().to_json()
 }
 
-#[get("/first_greather_than/<min>")]
-fn first_greater_than(min: u64) -> Json<String> {
-    to_json(prime::greater_than(min, true))
+#[get("/first_greater_than/<min>")]
+fn first_greater_than(prime_i: State<PrimeInterface>, min: u64) -> Json<String> {
+    prime_i.greater_than(min + 1, true).to_json()
 }
 
 #[get("/greater_than/<min>")]
-fn greater_than(min: u64) -> Json<String> {
-    to_json(prime::greater_than(min, false))
+fn greater_than(prime_i: State<PrimeInterface>, min: u64) -> Json<String> {
+    prime_i.greater_than(min + 1, false).to_json()
 }
 
 #[get("/at_position/<idx>")]
-fn at_position(idx: u64) -> Json<String> {
-    to_json(prime::at_position(idx))
+fn at_position(prime_i: State<PrimeInterface>, idx: u64) -> Json<String> {
+    prime_i.at_position(idx).to_json()
 }
 
 fn main() {
-    let rocket = rocket::ignite();
-    let rocket = rocket.mount(
-        "/",
-        routes![root, first_greater_than, greater_than, at_position],
-    );
-    rocket.launch();
+    rocket::ignite()
+        .manage(prime::PrimeInterface::new())
+        .mount(
+            "/",
+            routes![root, first_greater_than, greater_than, at_position],
+        )
+        .launch();
 }
