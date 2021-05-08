@@ -7,8 +7,12 @@ pub struct Prime {
     pub duration: f64,
 }
 
-pub fn greater_than(min: u64) -> Prime {
-    duration_wrapper(_greater_than, min)
+pub fn greater_than(min: u64, very_next: bool) -> Prime {
+    if very_next {
+        duration_wrapper(_first_greater_than, min)
+    } else {
+        duration_wrapper(_greater_than, min)
+    }
 }
 
 pub fn at_position(idx: u64) -> Prime {
@@ -43,13 +47,17 @@ fn duration_wrapper(function: fn(u64) -> Prime, arg: u64) -> Prime {
     result
 }
 
-fn _greater_than(min: u64) -> Prime {
+fn _first_greater_than(min: u64) -> Prime {
     let mut pset = Sieve::new();
     Prime {
         value: pset.find(min).1,
         duration: 0.0,
         new: false,
     }
+}
+
+fn _greater_than(min: u64) -> Prime {
+    _first_greater_than(min)
 }
 
 fn _at_position(idx: u64) -> Prime {
