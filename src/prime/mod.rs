@@ -3,10 +3,10 @@ use std::time::Instant;
 // use rocket_contrib::databases::diesel;
 // use rocket_contrib::databases::diesel::prelude::*;
 
+mod db;
 mod model;
 mod schema;
 mod utils;
-mod db;
 
 use utils::Prime;
 

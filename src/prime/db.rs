@@ -1,10 +1,10 @@
-use diesel;
-use diesel::prelude::*;
+// use diesel;
+// use diesel::prelude::*;
 
 // use super::utils;
-use super::model;
+// use super::model;
 // use super::schema;
-use super::schema::primes::dsl::*;
+// use super::schema::primes::dsl::*;
 
 // fn write_schema(conn: &diesel::SqliteConnection) {
 //     let results = primes
