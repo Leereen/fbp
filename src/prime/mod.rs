@@ -4,13 +4,11 @@ use std::time::Instant;
 mod utils;
 use utils::Prime;
 
-pub struct PrimeInterface {
-}
+pub struct PrimeInterface {}
 
 impl PrimeInterface {
-
     pub fn new() -> PrimeInterface {
-        PrimeInterface { }
+        PrimeInterface {}
     }
 
     pub fn greater_than(&self, min: u64, very_next: bool) -> Prime {
@@ -28,7 +26,7 @@ impl PrimeInterface {
         }
     }
 
-    pub fn random(&self, ) -> Prime {
+    pub fn random(&self) -> Prime {
         Prime::new(1, 0, 0.0, false)
     }
 

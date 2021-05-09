@@ -2,8 +2,8 @@
 
 #[macro_use]
 extern crate rocket;
-use rocket::State;
 use rocket::response::content::Json;
+use rocket::State;
 
 mod prime;
 use prime::PrimeInterface;
