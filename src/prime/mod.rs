@@ -1,16 +1,19 @@
 use primes::{PrimeSet, Sieve};
 use std::time::Instant;
+// use rocket_contrib::databases::diesel;
+// use rocket_contrib::databases::diesel::prelude::*;
 
+mod model;
+mod schema;
 mod utils;
+mod db;
+
 use utils::Prime;
 
-pub struct PrimeInterface {}
+#[database("mydb")]
+pub struct PrimeInterface(diesel::SqliteConnection);
 
 impl PrimeInterface {
-    pub fn new() -> PrimeInterface {
-        PrimeInterface {}
-    }
-
     pub fn greater_than(&self, min: u64, very_next: bool) -> Prime {
         if very_next {
             self.duration_wrapper(PrimeInterface::_first_greater_than, min)
@@ -19,10 +22,10 @@ impl PrimeInterface {
         }
     }
 
-    pub fn at_position(&self, idx: u64) -> Prime {
-        match idx {
+    pub fn at_position(&self, position: u64) -> Prime {
+        match position {
             0 => Prime::new(1, 0, 0.0, false),
-            _ => self.duration_wrapper(PrimeInterface::_at_position, idx),
+            _ => self.duration_wrapper(PrimeInterface::_at_position, position),
         }
     }
 
@@ -43,7 +46,7 @@ impl PrimeInterface {
         // primes starts at '2' (which is the 1st prime) with idx of '0',
         // hence the "idx + 1"
         let (idx, value) = pset.find(min);
-        Prime::new(value, idx + 1, 0.0, true)
+        Prime::new(value, (idx + 1) as u64, 0.0, true)
     }
 
     fn _greater_than(&self, min: u64) -> Prime {
@@ -55,7 +58,7 @@ impl PrimeInterface {
         for (idx, prime) in pset.iter().enumerate().skip(position as usize - 1).take(1) {
             // primes starts at '2' (which is the 1st prime) with idx of '0',
             // hence the "idx + 1"
-            return Prime::new(prime, idx + 1, 0.0, true);
+            return Prime::new(prime, (idx + 1) as u64, 0.0, true);
         }
         Prime::new(1, 0, 0.0, false)
     }
