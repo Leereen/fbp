@@ -1,3 +1,4 @@
+[![Travis Build Status](https://travis-ci.com/Leereen/fbp.svg)](https://travis-ci.com/Leereen/fbp)
 # Freshly Baked Primes
 
 Freshly Baked Primes is a basic pet projet I started to discover the
