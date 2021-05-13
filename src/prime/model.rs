@@ -1,8 +1,6 @@
-use diesel::{Queryable};
 use std::fmt;
 
 use super::schema::primes;
-
 
 #[derive(Queryable, Insertable)]
 #[table_name = "primes"]
