@@ -23,9 +23,9 @@ impl PrimeInterface {
     }
 
     pub fn at_position(&self, position: u64) -> Prime {
-        match position {
-            0 => Prime::new(1, 0, 0.0, false),
-            _ => self.duration_wrapper(PrimeInterface::_at_position, position),
+        match db::get_position(self, position) {
+            Some(prime) => return prime,
+            None => self.duration_wrapper(PrimeInterface::_at_position, position)
         }
     }
 

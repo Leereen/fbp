@@ -1,7 +1,11 @@
-use diesel;
+use diesel::{Queryable};
 use std::fmt;
 
-#[derive(diesel::Queryable)]
+use super::schema::primes;
+
+
+#[derive(Queryable, Insertable)]
+#[table_name = "primes"]
 pub struct DBPrime {
     pub id: i64,
     pub value: i64,

@@ -1,8 +1,6 @@
-use diesel;
-
 diesel::table! {
     primes (id) {
-        id -> BigInt,
-        value -> BigInt,
+        id -> BigInt,    // prime position (as signed)
+        value -> BigInt, // prime value
     }
 }
