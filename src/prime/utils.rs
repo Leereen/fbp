@@ -62,7 +62,7 @@ impl Prime {
 
     pub fn to_json(&self) -> Json<String> {
         Json(format!(
-            "{{ 'prime': {}, 'position': {}, 'duration': {}, 'new': {} }}",
+            "{{ \"prime\": {}, \"position\": {}, \"duration\": {}, \"new\": {} }}",
             self.value.to_string(),
             self.position.to_string(),
             self.duration.to_string(),
