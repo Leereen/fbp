@@ -1,0 +1,38 @@
+version: "3"
+services:
+  fbp:
+    image: fbp:latest
+    networks:
+      - fbp-network
+    expose:
+      - 8080
+    volumes:
+      - ./sqlite.db:/usr/src/app/sqlite.db:rw
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    networks:
+      - fbp-network
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./conf/nginx.conf:/etc/nginx/conf.d/fbp.conf:ro
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    restart: unless-stopped
+
+  certbot:
+    image: certbot/certbot
+    networks:
+      - fbp-network
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    restart: unless-stopped
+
+networks:
+  fbp-network:

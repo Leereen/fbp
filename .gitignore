@@ -1,4 +1,6 @@
 *db
 *~
 *.html
-/target
+target
+data
+./src/prime/schema.rs
