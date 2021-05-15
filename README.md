@@ -50,10 +50,10 @@ return a JSON with the following structure:
 }
 ```
 
-* `/` returns `{ 'prime': 1, 'position': 0, 'duration': 0, 'new': false }`
-* `/first_grater_than/<N: int>` returns the first prime number strictly greater than `N`
-* `/greater_than/<N: int>` returns exactly the same as the previous route
-* `/at_position/<k: int>` returns the prime number at position `k`
+* `/` returns a prime randomly picked from the database.
+* `/first_grater_than/<N: int>` returns the first prime number strictly greater than `N`.
+* `/greater_than/<N: int>` returns a prime from the database greater than N.
+  If the database does not contain such prime, falls back to previous route.
+* `/at_position/<k: int>` returns the prime number at position `k`.
 
-Most of these routes are quite dull, they should take some weight with the
-currently cooked database feature.
+The database grows with time, as every prime calculated are stored.
