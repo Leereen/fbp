@@ -14,6 +14,7 @@ For now, it uses:
 
 ## How-to
 
+
 ### Compile
 
 As a pure Rust repo for now, the compilation is very simple (given you have
@@ -25,6 +26,7 @@ cd fbp
 cargo build
 ```
 
+
 ### Run
 
 Again, very simple:
@@ -32,6 +34,7 @@ Again, very simple:
 ```
 cargo run
 ```
+
 
 ### HTTP API usage
 
@@ -57,3 +60,8 @@ return a JSON with the following structure:
 * `/at_position/<k: int>` returns the prime number at position `k`.
 
 The database grows with time, as every prime calculated are stored.
+
+
+## License
+
+You can read the `LICENSE` file or trust me when I say its MIT.

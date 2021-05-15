@@ -1,3 +1,5 @@
+# All the following credits goes for these dudes: https://github.com/wmnnd/nginx-certbot
+
 #!/bin/bash
 
 if ! [ -x "$(command -v docker-compose)" ]; then
