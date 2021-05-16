@@ -19,6 +19,7 @@ services:
       - 443:443
     volumes:
       - ./conf/nginx.conf:/etc/nginx/conf.d/fbp.conf:ro
+      - ./conf/timeout.conf:/etc/nginx/conf.d/timeout.conf:ro
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
