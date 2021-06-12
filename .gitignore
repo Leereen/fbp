@@ -6,3 +6,4 @@ data
 ./src/prime/schema.rs
 .*
 node_modules/
+build/
