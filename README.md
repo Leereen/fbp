@@ -61,18 +61,19 @@ return a JSON with the following structure:
                          // (then '2' is first, '3' second, '5' third, ...)
     "duration": <f64>,   // the time FBP took to generate the prime number
     "new":      <bool>   // if the prime has never been calculated by FBP
-                         // (always true, except for '1' which is hard-coded -
-                         //  will be used in the 'database' feature)
+                         // (is it stored in the local DB?)
 }
 ```
 
 * `/` returns a prime randomly picked from the database.
-* `/first_grater_than/<N: int>` returns the first prime number strictly greater than `N`.
-* `/greater_than/<N: int>` returns a prime from the database greater than N.
+* `/first_grater_than/<N: int>` returns the first prime number strictly greater
+  than `N`.
+* `/greater_than/<N: int>` returns a prime from the database greater than `N`.
   If the database does not contain such prime, falls back to previous route.
-* `/at_position/<k: int>` returns the prime number at position `k`.
+* `/at_position/<k: int>` returns the prime number at position `k` (given `1`
+  has position `0`).
 
-The database grows with time, as every prime calculated are stored.
+The database grows with time, as every calculated prime is stored.
 
 ### Frontend
 
@@ -98,7 +99,8 @@ with the CORS, you can use
 [local-cors-proxy](https://www.npmjs.com/package/local-cors-proxy).
 
 It is in the `frontend/package.json` file so it should already be available if
-you followed the previous "Dependencies" step. Before `npm start`, just do:
+you followed the previous "Dependencies" step. Before `npm start`, in another
+terminal, just do:
 
 ```
 ./frontend/node_modules/.bin/lcp --proxyUrl https://freshlybakedprimes.eu
