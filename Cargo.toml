@@ -5,7 +5,7 @@ authors = ["bow <pro.lpascal@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-rocket = "0.4.7"
+rocket = "0.4.10"
 primes = "0.3.0"
 diesel = { version = "1.4.0", features = ["sqlite", "numeric"] }
 
