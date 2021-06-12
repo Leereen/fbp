@@ -9,8 +9,8 @@ class PrimeRequest extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: null,
-        }
+            value: null
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -26,7 +26,7 @@ class PrimeRequest extends React.Component {
             .then(
                 (result) => { context.setPrime(result); },
                 (error) => {}
-            )
+            );
     }
 }
 
@@ -50,7 +50,7 @@ class RandomRequest extends PrimeRequest {
                 )}
               </MContext.Consumer>
             </div>
-        )
+        );
     }
 }
 
@@ -88,7 +88,7 @@ class PositionRequest extends PrimeRequest {
                 )}
               </MContext.Consumer>
             </div>
-        )
+        );
     }
 }
 
@@ -97,7 +97,7 @@ class GreaterThanRequest extends PrimeRequest {
         super(props);
         this.state = {
             value: 0,
-            strict: false,
+            strict: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -143,7 +143,7 @@ class GreaterThanRequest extends PrimeRequest {
                 )}
               </MContext.Consumer>
             </div>
-        )
+        );
     }
 }
 
