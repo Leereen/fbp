@@ -106,6 +106,20 @@ you followed the previous "Dependencies" step. Before `npm start`, just do:
 
 I can't guarantee this URL would survive for decades, but you get the idea.
 
+#### Building production bundle
+
+Same deal than previous step: you need to change the `HOST` variable in
+`frontend/src/Globals.js` to target your API URL.
+
+After that:
+
+```
+(cd frontend && npm run build)
+```
+
+You can now copy the `frontend/build/` directory wherever you like and configure
+a HTTP server to serve it.
+
 
 ## License
 
