@@ -22,6 +22,7 @@ services:
       - ./conf/timeout.conf:/etc/nginx/conf.d/timeout.conf:ro
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
+      - ./frontend/build:/var/www/frontend:ro
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     restart: unless-stopped
 

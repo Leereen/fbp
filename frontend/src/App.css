@@ -1,0 +1,66 @@
+html, body, #root {
+    height: 100%;
+}
+
+#app {
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding-left: 15%; */
+    /* padding-right: 15%; */
+    margin: auto;
+    max-width: 1080px;
+}
+
+.app-header {
+    min-height: 10%
+}
+
+.app-header-title {
+    background-color: #fff;
+    width: 100%;
+    font-size: calc(5vmin);
+}
+
+.app-main {
+    background-color: #fff;
+    height: 85%;
+    width: 100%;
+    font-size: calc(2vmin);
+}
+
+.app-main-result {
+    min-height: 50%;
+}
+
+.app-main-result-text {
+    color: black;
+    font-size: calc(5vmin);
+}
+
+.app-main-comment-text {
+    font-size: calc(2.5vmin);
+}
+
+.app-main ul li {
+    list-style: none;
+}
+
+.prime-display {
+}
+
+.prime-options {
+    overflow-y: auto;
+    bottom: 0;
+}
+
+.footer {
+
+}
+
+.app-link {
+  color: #01cafb;
+}
